@@ -1507,6 +1507,50 @@
         }
       }
     },
+    "/reports/labahold": {
+      "get": {
+        "tags": ["Reports"],
+        "summary": "Laba Hold",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Laba Hold Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "tahun": { "type": "integer" },
+                      "laba_hold": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/reports/ringkasan/{start}/{end}": {
       "get": {
         "tags": ["Reports"],
