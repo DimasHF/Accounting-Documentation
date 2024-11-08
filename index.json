@@ -6,6 +6,40 @@
   },
   "servers": [{ "url": "http://localhost:8000/api" }],
   "paths": {
+    "/check": {
+      "get": {
+        "tags": ["Check"],
+        "summary": "Check API",
+        "responses": {
+          "200": {
+            "description": "Check API Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/login": {
       "post": {
         "tags": ["Admin"],
@@ -369,7 +403,8 @@
                         "properties": {
                           "code_type": { "type": "integer" },
                           "name_type": { "type": "string" },
-                          "config_type": { "type": "string" }
+                          "config_type": { "type": "string" },
+                          "deleted_type": { "type": "boolean" }
                         }
                       }
                     }
@@ -408,7 +443,8 @@
                 "type": "object",
                 "properties": {
                   "code_type": { "type": "integer" },
-                  "name_type": { "type": "string" }
+                  "name_type": { "type": "string" },
+                  "deleted_type": { "type": "boolean" }
                 }
               }
             }
@@ -469,7 +505,8 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name_type": { "type": "string" }
+                  "name_type": { "type": "string" },
+                  "deleted_type": { "type": "boolean" }
                 }
               }
             }
@@ -640,7 +677,8 @@
                           "name_type": { "type": "string" },
                           "code_subtype": { "type": "integer" },
                           "name_subtype": { "type": "string" },
-                          "config_subtype": { "type": "string" }
+                          "config_subtype": { "type": "string" },
+                          "deleted_subtype": { "type": "boolean" }
                         }
                       }
                     }
@@ -679,7 +717,8 @@
                 "type": "object",
                 "properties": {
                   "name_subtype": { "type": "string" },
-                  "account_type": { "type": "integer" }
+                  "account_type": { "type": "integer" },
+                  "deleted_subtype": { "type": "boolean" }
                 }
               }
             }
@@ -740,7 +779,8 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name_subtype": { "type": "string" }
+                  "name_subtype": { "type": "string" },
+                  "deleted_subtype": { "type": "boolean" }
                 }
               }
             }
@@ -907,12 +947,15 @@
                       "items": {
                         "type": "object",
                         "properties": {
+                          "name_type": { "type": "string" },
+                          "name_subtype": { "type": "string" },
                           "code_account": { "type": "integer" },
                           "name_account": { "type": "string" },
                           "account_type": { "type": "integer" },
                           "account_subtype": { "type": "integer" },
                           "account_parent": { "type": "integer" },
-                          "description": { "type": "string" }
+                          "description": { "type": "string" },
+                          "deleted_account": { "type": "boolean" }
                         }
                       }
                     }
@@ -954,7 +997,8 @@
                   "account_subtype": { "type": "integer" },
                   "parent": { "type": "integer" },
                   "description": { "type": "string" },
-                  "account_parent": { "type": "integer" }
+                  "account_parent": { "type": "integer" },
+                  "deleted_account": { "type": "boolean" }
                 }
               }
             }
@@ -1016,7 +1060,8 @@
                 "type": "object",
                 "properties": {
                   "name_account": { "type": "string" },
-                  "description": { "type": "string" }
+                  "description": { "type": "string" },
+                  "deleted_account": { "type": "boolean" }
                 }
               }
             }
@@ -1596,6 +1641,345 @@
                         }
                       }
                     }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/neraca/{end}": {
+      "get": {
+        "tags": ["Reports"],
+        "summary": "Neraca",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "end",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Neraca Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Aset Lancar": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code_subtype": { "type": "integer" },
+                          "name_subtype": { "type": "string" },
+                          "total_subtype": { "type": "string" },
+                          "accounts": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "code_account": { "type": "integer" },
+                                "name_account": { "type": "string" },
+                                "total_account": { "type": "string" }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Aset Tidak Lancar": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code_subtype": { "type": "integer" },
+                          "name_subtype": { "type": "string" },
+                          "total_subtype": { "type": "string" },
+                          "accounts": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "code_account": { "type": "integer" },
+                                "name_account": { "type": "string" },
+                                "total_account": { "type": "string" }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Total Aset": { "type": "string" },
+                    "Liabilitas Jangka Pendek": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code_subtype": { "type": "integer" },
+                          "name_subtype": { "type": "string" },
+                          "total_subtype": { "type": "string" },
+                          "accounts": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "code_account": { "type": "integer" },
+                                "name_account": { "type": "string" },
+                                "total_account": { "type": "string" }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Liabilitas Jangka Panjang": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code_subtype": { "type": "integer" },
+                          "name_subtype": { "type": "string" },
+                          "total_subtype": { "type": "string" },
+                          "accounts": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "code_account": { "type": "integer" },
+                                "name_account": { "type": "string" },
+                                "total_account": { "type": "string" }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Total Liabilitas": { "type": "string" },
+                    "Ekuitas": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code_subtype": { "type": "integer" },
+                          "name_subtype": { "type": "string" },
+                          "total_subtype": { "type": "string" },
+                          "accounts": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "code_account": { "type": "integer" },
+                                "name_account": { "type": "string" },
+                                "total_account": { "type": "string" }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Total Ekuitas": {
+                      "type": "object",
+                      "properties": {
+                        "modal_awal": { "type": "string" },
+                        "laba_tahun": { "type": "string" },
+                        "laba_hold": { "type": "string" },
+                        "total_ekuitas": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/labarugi/{start}/{end}": {
+      "get": {
+        "tags": ["Reports"],
+        "summary": "Laba Rugi",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "start",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Laba Rugi Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Pendapatan Operasional": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code_subtype": { "type": "integer" },
+                          "name_subtype": { "type": "string" },
+                          "total_subtype": { "type": "string" },
+                          "accounts": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "code_account": { "type": "integer" },
+                                "name_account": { "type": "string" },
+                                "total_account": { "type": "string" }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Beban Pokok Penjualan": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code_subtype": { "type": "integer" },
+                          "name_subtype": { "type": "string" },
+                          "total_subtype": { "type": "string" },
+                          "accounts": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "code_account": { "type": "integer" },
+                                "name_account": { "type": "string" },
+                                "total_account": { "type": "string" }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Laba Kotor": { "type": "string" },
+                    "Beban Operasional": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code_subtype": { "type": "integer" },
+                          "name_subtype": { "type": "string" },
+                          "total_subtype": { "type": "string" },
+                          "accounts": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "code_account": { "type": "integer" },
+                                "name_account": { "type": "string" },
+                                "total_account": { "type": "string" }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Laba Operasional": { "type": "string" },
+                    "Pendapatan Non Operasional": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code_subtype": { "type": "integer" },
+                          "name_subtype": { "type": "string" },
+                          "total_subtype": { "type": "string" },
+                          "accounts": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "code_account": { "type": "integer" },
+                                "name_account": { "type": "string" },
+                                "total_account": { "type": "string" }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Beban Non Operasional": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code_subtype": { "type": "integer" },
+                          "name_subtype": { "type": "string" },
+                          "total_subtype": { "type": "string" },
+                          "accounts": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "code_account": { "type": "integer" },
+                                "name_account": { "type": "string" },
+                                "total_account": { "type": "string" }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Laba Non Operasional": { "type": "string" },
+                    "Laba Bersih": { "type": "string" }
                   }
                 }
               }
