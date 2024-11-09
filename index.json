@@ -1748,6 +1748,8 @@
                               "properties": {
                                 "code_account": { "type": "integer" },
                                 "name_account": { "type": "string" },
+                                "parent_account": { "type": "integer" },
+                                "name_parent": { "type": "string" },
                                 "total_account": { "type": "string" }
                               }
                             }
@@ -1795,6 +1797,8 @@
                               "properties": {
                                 "code_account": { "type": "integer" },
                                 "name_account": { "type": "string" },
+                                "parent_account": { "type": "integer" },
+                                "name_parent": { "type": "string" },
                                 "total_account": { "type": "string" }
                               }
                             }
@@ -1817,6 +1821,8 @@
                               "properties": {
                                 "code_account": { "type": "integer" },
                                 "name_account": { "type": "string" },
+                                "parent_account": { "type": "integer" },
+                                "name_parent": { "type": "string" },
                                 "total_account": { "type": "string" }
                               }
                             }
@@ -1840,6 +1846,8 @@
                               "properties": {
                                 "code_account": { "type": "integer" },
                                 "name_account": { "type": "string" },
+                                "parent_account": { "type": "integer" },
+                                "name_parent": { "type": "string" },
                                 "total_account": { "type": "string" }
                               }
                             }
@@ -1927,6 +1935,8 @@
                               "properties": {
                                 "code_account": { "type": "integer" },
                                 "name_account": { "type": "string" },
+                                "parent_account": { "type": "integer" },
+                                "name_parent": { "type": "string" },
                                 "total_account": { "type": "string" }
                               }
                             }
@@ -1974,6 +1984,8 @@
                               "properties": {
                                 "code_account": { "type": "integer" },
                                 "name_account": { "type": "string" },
+                                "parent_account": { "type": "integer" },
+                                "name_parent": { "type": "string" },
                                 "total_account": { "type": "string" }
                               }
                             }
@@ -1997,6 +2009,8 @@
                               "properties": {
                                 "code_account": { "type": "integer" },
                                 "name_account": { "type": "string" },
+                                "parent_account": { "type": "integer" },
+                                "name_parent": { "type": "string" },
                                 "total_account": { "type": "string" }
                               }
                             }
@@ -2019,6 +2033,8 @@
                               "properties": {
                                 "code_account": { "type": "integer" },
                                 "name_account": { "type": "string" },
+                                "parent_account": { "type": "integer" },
+                                "name_parent": { "type": "string" },
                                 "total_account": { "type": "string" }
                               }
                             }
