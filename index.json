@@ -1741,7 +1741,7 @@
                           "code_subtype": { "type": "integer" },
                           "name_subtype": { "type": "string" },
                           "total_subtype": { "type": "string" },
-                          "accounts": {
+                          "account": {
                             "type": "array",
                             "items": {
                               "type": "object",
@@ -1763,7 +1763,7 @@
                           "code_subtype": { "type": "integer" },
                           "name_subtype": { "type": "string" },
                           "total_subtype": { "type": "string" },
-                          "accounts": {
+                          "account": {
                             "type": "array",
                             "items": {
                               "type": "object",
@@ -1786,7 +1786,7 @@
                           "code_subtype": { "type": "integer" },
                           "name_subtype": { "type": "string" },
                           "total_subtype": { "type": "string" },
-                          "accounts": {
+                          "account": {
                             "type": "array",
                             "items": {
                               "type": "object",
@@ -1808,7 +1808,7 @@
                           "code_subtype": { "type": "integer" },
                           "name_subtype": { "type": "string" },
                           "total_subtype": { "type": "string" },
-                          "accounts": {
+                          "account": {
                             "type": "array",
                             "items": {
                               "type": "object",
@@ -1831,7 +1831,7 @@
                           "code_subtype": { "type": "integer" },
                           "name_subtype": { "type": "string" },
                           "total_subtype": { "type": "string" },
-                          "accounts": {
+                          "account": {
                             "type": "array",
                             "items": {
                               "type": "object",
@@ -1918,7 +1918,7 @@
                           "code_subtype": { "type": "integer" },
                           "name_subtype": { "type": "string" },
                           "total_subtype": { "type": "string" },
-                          "accounts": {
+                          "account": {
                             "type": "array",
                             "items": {
                               "type": "object",
@@ -1940,7 +1940,7 @@
                           "code_subtype": { "type": "integer" },
                           "name_subtype": { "type": "string" },
                           "total_subtype": { "type": "string" },
-                          "accounts": {
+                          "account": {
                             "type": "array",
                             "items": {
                               "type": "object",
@@ -1963,7 +1963,7 @@
                           "code_subtype": { "type": "integer" },
                           "name_subtype": { "type": "string" },
                           "total_subtype": { "type": "string" },
-                          "accounts": {
+                          "account": {
                             "type": "array",
                             "items": {
                               "type": "object",
@@ -1986,7 +1986,7 @@
                           "code_subtype": { "type": "integer" },
                           "name_subtype": { "type": "string" },
                           "total_subtype": { "type": "string" },
-                          "accounts": {
+                          "account": {
                             "type": "array",
                             "items": {
                               "type": "object",
@@ -2008,7 +2008,7 @@
                           "code_subtype": { "type": "integer" },
                           "name_subtype": { "type": "string" },
                           "total_subtype": { "type": "string" },
-                          "accounts": {
+                          "account": {
                             "type": "array",
                             "items": {
                               "type": "object",
